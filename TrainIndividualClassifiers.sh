@@ -2,7 +2,7 @@
 usage() { echo "Usage: $0 [-p <Dataset Name>] [-c <EE|LbEE|FastEE|ApproxEE>] [-d <Dataset Directory>] [-o <Output Directory>] [-s <Number of Samples>] [-r <Number of Runs>]" 1>&2; exit; }
 
 PROJECTDIR=$PWD/
-OUTPUTDIR=$PWD"/output/individual/"
+OUTPUTDIR=$PWD"/output/Individual/"
 DATASETDIR="/home/ubuntu/workspace/Dataset/TSC_Problems/"
 if [ ! -d "$DATASETDIR" ]; then
       DATASETDIR="/mnt/c/Users/cwtan/workspace/Dataset/TSC_Problems/"
