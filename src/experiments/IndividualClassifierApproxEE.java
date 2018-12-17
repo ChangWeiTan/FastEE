@@ -28,10 +28,10 @@ import java.util.Random;
  * Training an indiviual classifier using ApproxEE
  */
 public class IndividualClassifierApproxEE extends Experiments {
-    private static String datasetName = "ChlorineConcentration";
-    private static String distanceMeasure = "WDTW";
+    private static String datasetName = "ArrowHead";
+    private static String distanceMeasure = "DTW_R1";
     private static int nSamples = 2;
-    private static int runs = 0;
+    private static int runs = 1;
 
     public static void main(String[] args) throws Exception {
         // retrieve input arguments

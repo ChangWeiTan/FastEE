@@ -25,10 +25,10 @@ import weka.core.Instances;
  *
  * Time the full training process
  */
-public class ElasticEnsembleTiming extends Experiments {
+public class TrainElasticEnsembles extends Experiments {
     private static String datasetName = "ArrowHead";
     private static String classifierType = "FastEE";
-    private static int nSamples = 1;
+    private static int nSamples = 2;
     
     public static void main(String[] args) throws Exception {
         // retrieve input arguments

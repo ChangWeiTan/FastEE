@@ -49,6 +49,11 @@ public class ED1NN extends OneNearestNeighbour {
 
     }
 
+    @Override
+    public double[] fastWWSApproximate(Instances train, int nSamples) throws Exception {
+        return super.loocv(train);
+    }
+
     /*------------------------------------------------------------------------------------------------------------------
         Distances
      -----------------------------------------------------------------------------------------------------------------*/

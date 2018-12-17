@@ -26,7 +26,7 @@ import java.util.*;
  * Code for the paper "FastEE: Fast Ensembles of Elastic Distances for Time Series Classification"
  *
  * @author Chang Wei Tan, Francois Petitjean, Geoff Webb
- *
+ * <p>
  * Superclass for NN classifiers
  */
 public abstract class OneNearestNeighbour extends AbstractClassifier {
@@ -203,7 +203,7 @@ public abstract class OneNearestNeighbour extends AbstractClassifier {
                 bsfaccAndPreds = accAndPreds;
             }
             if (!this.allowLoocv) {
-                paramId = 100;
+                paramId = nParams + 1;
             }
         }
         long end = System.nanoTime();
@@ -239,7 +239,7 @@ public abstract class OneNearestNeighbour extends AbstractClassifier {
                 bsfaccAndPreds = accAndPreds;
             }
             if (!this.allowLoocv) {
-                paramId = 100;
+                paramId = nParams + 1;
             }
         }
         long end = System.nanoTime();
@@ -485,7 +485,7 @@ public abstract class OneNearestNeighbour extends AbstractClassifier {
                 bsfaccAndPreds = accAndPreds;
             }
             if (!this.allowLoocv) {
-                paramId = -1;
+                paramId = nParams + 1;
             }
         }
         long end = System.nanoTime();
@@ -525,7 +525,7 @@ public abstract class OneNearestNeighbour extends AbstractClassifier {
                 bsfaccAndPreds = accAndPreds;
             }
             if (!this.allowLoocv) {
-                paramId = -1;
+                paramId = nParams + 1;
             }
         }
         long end = System.nanoTime();
@@ -588,7 +588,7 @@ public abstract class OneNearestNeighbour extends AbstractClassifier {
                 bsfaccAndPreds = accAndPreds;
             }
             if (!this.allowLoocv) {
-                paramId = -1;
+                paramId = nParams + 1;
             }
         }
         long end = System.nanoTime();
@@ -657,7 +657,7 @@ public abstract class OneNearestNeighbour extends AbstractClassifier {
                 bsfaccAndPreds = accAndPreds;
             }
             if (!this.allowLoocv) {
-                paramId = -1;
+                paramId = nParams + 1;
             }
         }
         long end = System.nanoTime();
