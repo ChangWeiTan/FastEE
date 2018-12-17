@@ -46,7 +46,7 @@ public class TrainElasticEnsembles extends Experiments {
         System.out.println(String.format("[ENSEMBLE] Output path     : %s", outputPath));
         System.out.println(String.format("[ENSEMBLE] Dataset path    : %s", datasetPath));
         System.out.println(String.format("[ENSEMBLE] Dataset name    : %s", datasetName));
-        System.out.println(String.format("[ENSEMBLE] Distances       : %s", classifierType));
+        System.out.println(String.format("[ENSEMBLE] Classifier      : %s", classifierType));
         System.out.println(String.format("[ENSEMBLE] # Samples       : %d", nSamples));
 
         // load data
