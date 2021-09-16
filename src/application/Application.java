@@ -556,6 +556,7 @@ public class Application {
     }
 
     public static void printSummary(String moduleName) {
+        System.out.println("[" + moduleName + "] Machine: " + Application.machine);
         System.out.println("[" + moduleName + "] DatasetPath: " + Application.datasetPath);
         System.out.println("[" + moduleName + "] Problem: " + Application.problem);
         System.out.println("[" + moduleName + "] Classifier: " + Application.classifierName);
