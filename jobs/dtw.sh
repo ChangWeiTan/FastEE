@@ -5,6 +5,7 @@
 #SBATCH --ntasks=1
 #SBATCH --mem-per-cpu=16000
 #SBATCH --cpus-per-task=32
+#SBATCH --partition=m3i
 
 module load jdk/14
 cd ..
