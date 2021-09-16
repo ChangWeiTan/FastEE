@@ -3,7 +3,6 @@
 #SBATCH --account=nc23
 #SBATCH --time=48:00:00
 #SBATCH --ntasks=1
-#SBATCH --mem-per-cpu=16000
 #SBATCH --cpus-per-task=32
 #SBATCH --partition=m3i
 
