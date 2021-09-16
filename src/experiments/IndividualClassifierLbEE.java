@@ -54,7 +54,7 @@ public class IndividualClassifierLbEE extends Experiments {
         // initialise classifier
         FastElasticEnsemble.ConstituentClassifiers classifierType;
         switch (distanceMeasure) {
-            case "Euclidean":
+            case "classifiers.distance.Euclidean":
                 classifierType = FastElasticEnsemble.ConstituentClassifiers.Euclidean_1NN;
                 break;
             case "DTW_Rn":

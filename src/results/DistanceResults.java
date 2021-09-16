@@ -9,29 +9,24 @@
  GNU General Public License for more details.
  You should have received a copy of the GNU General Public License
  along with LbEnhanced.  If not, see <http://www.gnu.org/licenses/>. */
-package timeseriesweka.elasticDistances;
-
-import weka.core.EuclideanDistance;
-import weka.core.Instances;
-
-import java.text.DecimalFormat;
+package results;
 
 /**
  * Code for the paper "FastEE: Fast Ensembles of Elastic Distances for Time Series Classification"
  *
  * @author Chang Wei Tan, Francois Petitjean, Geoff Webb
  *
- * Superclass for all the elastic classifiers.nearestNeighbour.distances used
+ * Results that stores the distance and maximum width from diagonal
  */
-public abstract class ElasticDistances extends EuclideanDistance {
-    final static int MAX_SEQ_LENGTH = 4000;         // maximum sequence length possible
-    final static int DIAGONAL = 0;                  // value for diagonal
-    final static int LEFT = 1;                      // value for left
-    final static int UP = 2;                        // value for up
+public class DistanceResults {
+    public double distance; // distance value
+    public int r;           // maximum width from diagonal
 
-    static boolean paramsRefreshed = false;
+    DistanceResults() {
+    }
 
-    protected DecimalFormat df = new DecimalFormat("#0.####");
-
-    public abstract void setParamsFromParamID(Instances train, int paramId);
+    DistanceResults(double d, int r) {
+        this.distance = d;
+        this.r = r;
+    }
 }

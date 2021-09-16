@@ -11,6 +11,7 @@
  along with LbEnhanced.  If not, see <http://www.gnu.org/licenses/>. */
 package fileIO;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,12 +22,32 @@ import java.io.PrintWriter;
  */
 public class OutFile {
 
+    private final static String slash = "/";
     private PrintWriter outFile;
     private char delimit;
 
     public OutFile(String name) {
         try {
             FileWriter fw = new FileWriter(name);
+            outFile = new PrintWriter(fw);
+            delimit = ',';
+        } catch (IOException exception) {
+            System.err.println(exception + " File " + name + " Not found");
+        }
+    }
+
+    public OutFile(final String outputPath, final String name) throws Exception {
+        File dir = new File(outputPath);
+        if (!dir.exists()) {
+            boolean flag = dir.mkdirs();
+            if (!flag) throw new Exception(outputPath + " not created!");
+        }
+        String filename = outputPath + name;
+        if (!outputPath.endsWith(slash))
+            filename = outputPath + slash + name;
+
+        try {
+            FileWriter fw = new FileWriter(filename);
             outFile = new PrintWriter(fw);
             delimit = ',';
         } catch (IOException exception) {

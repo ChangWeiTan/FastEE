@@ -50,12 +50,12 @@ public class Experiments {
         String path = System.getProperty("user.dir") + "/best_" + method.toLowerCase() + "_param/";
         int[] bestParamId = new int[11];
         //              0           1       2       3       4       5       6       7    8    9   10
-        // BestParamId: Euclidean, DTW_R1, DTW_Rn, WDTW, DDTW_R1, DDTW_Rn, WDDTW, LCSS, MSM, TWE, ERP
+        // BestParamId: classifiers.distance.Euclidean, DTW_R1, DTW_Rn, WDTW, DDTW_R1, DDTW_Rn, WDDTW, LCSS, MSM, TWE, ERP
         int[] params = readCSVtoInt(path + datasetName + "_best_" + method.toLowerCase() + "_param.csv");
         //          0           1       2       3       4       5       6       7    8    9   10
-        // Params: Euclidean, DTW_R1, DTW_Rn, DDTW_R1, DDTW_Rn, WDTW, WDDTW, TWE, LCSS, MSM, ERP
+        // Params: classifiers.distance.Euclidean, DTW_R1, DTW_Rn, DDTW_R1, DDTW_Rn, WDTW, WDDTW, TWE, LCSS, MSM, ERP
 
-        // Euclidean
+        // classifiers.distance.Euclidean
         bestParamId[0] = params[0];
         // DTW_R1
         bestParamId[1] = params[1];
@@ -101,12 +101,12 @@ public class Experiments {
         String path = System.getProperty("user.dir") + "/best_" + method.toLowerCase() + nSamples + "_param/";
         int[] bestParamId = new int[11];
         //              0           1       2       3       4       5       6       7    8    9   10
-        // BestParamId: Euclidean, DTW_R1, DTW_Rn, WDTW, DDTW_R1, DDTW_Rn, WDDTW, LCSS, MSM, TWE, ERP
+        // BestParamId: classifiers.distance.Euclidean, DTW_R1, DTW_Rn, WDTW, DDTW_R1, DDTW_Rn, WDDTW, LCSS, MSM, TWE, ERP
         ArrayList<int[]> params = readCSVtoInts(path + datasetName + "_best_" + method.toLowerCase() + nSamples + "_param.csv");
         //          0           1       2       3       4       5       6       7    8    9   10
-        // Params: Euclidean, DTW_R1, DTW_Rn, DDTW_R1, DDTW_Rn, WDTW, WDDTW, TWE, LCSS, MSM, ERP
+        // Params: classifiers.distance.Euclidean, DTW_R1, DTW_Rn, DDTW_R1, DDTW_Rn, WDTW, WDDTW, TWE, LCSS, MSM, ERP
 
-        // Euclidean
+        // classifiers.distance.Euclidean
         bestParamId[0] = params.get(runs)[0];
         // DTW_R1
         bestParamId[1] = params.get(runs)[1];
@@ -152,7 +152,7 @@ public class Experiments {
 
         double[] acc = readCSVtoDouble(path + datasetName + "_best_" + method.toLowerCase() + "_cv_acc.csv");
 
-        // Euclidean
+        // classifiers.distance.Euclidean
         cvAcc[0] = acc[0];
         // DTW_R1
         cvAcc[1] = acc[1];
@@ -200,7 +200,7 @@ public class Experiments {
 
         ArrayList<double[]> acc = readCSVtoDoubles(path + datasetName + "_best_" + method.toLowerCase() + nSamples + "_cv_acc.csv");
 
-        // Euclidean
+        // classifiers.distance.Euclidean
         cvAcc[0] = acc.get(runs)[0];
         // DTW_R1
         cvAcc[1] = acc.get(runs)[1];

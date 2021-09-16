@@ -57,7 +57,7 @@ public class IndividualClassifier extends Experiments {
         // initialise classifier
         ElasticEnsemble.ConstituentClassifiers classifierType;
         switch (distanceMeasure) {
-            case "Euclidean":
+            case "classifiers.distance.Euclidean":
                 classifierType = ElasticEnsemble.ConstituentClassifiers.Euclidean_1NN;
                 break;
             case "DTW_Rn":
