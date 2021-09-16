@@ -21,6 +21,7 @@ public class Application {
     public static String datasetPath;
     public static String problem = "";
     public static String classifierName = "DTW-1NN";
+    public static String machine = "windows";
     public static int paramId = 0;
     public static int verbose = 0;
     public static boolean znorm = true;
@@ -42,6 +43,9 @@ public class Application {
                 switch (options[0]) {
                     case "-out":
                         outputPath = options[1];
+                        break;
+                    case "-machine":
+                        machine = options[1];
                         break;
                     case "-data":
                         datasetPath = options[1];
@@ -95,10 +99,11 @@ public class Application {
             paramId = -1;
 
         if (Application.datasetPath == null) {
-            String osName = System.getProperty("os.name");
             String username = System.getProperty("user.name");
-            if (osName.contains("Window")) {
+            if (machine.equals("windows")) {
                 Application.datasetPath = "C:/Users/" + username + "/workspace/Dataset/UCRArchive_2018/";
+            } else if (machine.equals("m3")) {
+                Application.datasetPath = "/projects/nc23/changwei/Dataset/UCRArchive_2018/";
             } else {
                 Application.datasetPath = "/home/" + username + "/workspace/Dataset/UCRArchive_2018/";
             }
@@ -538,7 +543,7 @@ public class Application {
                     JSONObject alist = (JSONObject) result.get("accuracy");
                     System.out.println("Train Acc: " + alist.get("train_acc"));
                     System.out.println("Test Acc: " + alist.get("test_acc"));
-                } else if (result.containsKey("duration")){
+                } else if (result.containsKey("duration")) {
                     JSONObject alist = (JSONObject) result.get("duration");
                     System.out.println("Train Time: " + alist.get("train_time"));
                     System.out.println("Test Time: " + alist.get("test_time"));
