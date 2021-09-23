@@ -37,6 +37,7 @@ public class DTW1NN extends OneNearestNeighbour {
         if (useDerivative > 0)
             this.classifierIdentifier = "DDTW_1NN_R1";
         this.useDerivative = useDerivative;
+        init(paramId, trainOpts);
     }
 
     public void summary() {
@@ -315,5 +316,6 @@ public class DTW1NN extends OneNearestNeighbour {
     protected int getParamIdFromWindow(final int w, final int n) {
         double r = 1.0 * w / n;
         return (int) Math.ceil(r * 100);
+//        return (int) (r * 100);
     }
 }

@@ -99,7 +99,7 @@ public class GenericTools {
         double[] ins2array;
         for (int i = 0; i < input.size(); i++) {
             ins2array = input.get(i).data[0];
-            for (int j = 0; j < ins2array.length - 1; j++) {//-1 to avoid classVal
+            for (int j = 0; j < ins2array.length; j++) {//-1 to avoid classVal
                 sumx += ins2array[j];
                 sumx2 += ins2array[j] * ins2array[j];
             }

@@ -31,8 +31,8 @@ public class LbLcss {
             min = Double.POSITIVE_INFINITY;
             max = Double.NEGATIVE_INFINITY;
             final int startR = Math.max(i - delta, 0);
-            final int stopR = Math.min(i + delta + 1, length);
-            for (int j = startR; j < stopR; j++) {
+            final int stopR = Math.min(i + delta + 1, length-1);
+            for (int j = startR; j <= stopR; j++) {
                 final double value = sequence.value(j);
                 min = Math.min(min, value);
                 max = Math.max(max, value);

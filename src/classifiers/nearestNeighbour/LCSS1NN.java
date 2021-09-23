@@ -39,6 +39,7 @@ public class LCSS1NN extends OneNearestNeighbour {
         if (useDerivative > 0)
             this.classifierIdentifier = "DLCSS_1NN_R1";;
         this.useDerivative = useDerivative;
+        init(paramId, trainOpts);
     }
 
     public void summary() {
@@ -71,6 +72,34 @@ public class LCSS1NN extends OneNearestNeighbour {
         return lbComputer.distance(candidate,
                 cache.getUE(queryIndex, delta, epsilon),
                 cache.getLE(queryIndex, delta, epsilon));
+    }
+
+    @Override
+    protected double[] fastParameterSearchAccAndPred(final Sequences train, final int paramId, final int n) {
+        this.setParamsFromParamId(paramId);
+        int correct = 0;
+        double pred, actual;
+
+        final double[] accAndPreds = new double[n + 1];
+        for (int i = 0; i < n; i++) {
+            actual = train.get(i).classificationLabel;
+            pred = -1;
+            double bsfCount = -1;
+            for (int c = 0; c < classCounts[paramId][i].length; c++) {
+                if (classCounts[paramId][i][c] > bsfCount) {
+                    bsfCount = classCounts[paramId][i][c];
+                    pred = c;
+                }
+            }
+
+            if (pred == actual) {
+                correct++;
+            }
+            accAndPreds[i + 1] = pred;
+        }
+        accAndPreds[0] = 1.0 * correct / n;
+
+        return accAndPreds;
     }
 
     @Override
@@ -196,6 +225,39 @@ public class LCSS1NN extends OneNearestNeighbour {
                 }
             }
         }
+    }
+
+    @Override
+    public int predict(final Sequence query) throws Exception {
+        int[] classCounts = new int[this.trainData.getNumClasses()];
+
+        double dist;
+
+        Sequence candidate = trainData.get(0);
+        double bsfDistance = distance(query, candidate);
+        classCounts[candidate.classificationLabel]++;
+
+        for (int candidateIndex = 1; candidateIndex < trainData.size(); candidateIndex++) {
+            candidate = trainData.get(candidateIndex);
+            dist = distance(query, candidate);
+            if (dist < bsfDistance) {
+                bsfDistance = dist;
+                classCounts = new int[trainData.getNumClasses()];
+                classCounts[candidate.classificationLabel]++;
+            } else if (dist == bsfDistance) {
+                classCounts[candidate.classificationLabel]++;
+            }
+        }
+
+        int bsfClass = -1;
+        double bsfCount = -1;
+        for (int i = 0; i < classCounts.length; i++) {
+            if (classCounts[i] > bsfCount) {
+                bsfCount = classCounts[i];
+                bsfClass = i;
+            }
+        }
+        return bsfClass;
     }
 
     @Override

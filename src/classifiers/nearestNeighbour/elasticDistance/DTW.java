@@ -182,7 +182,8 @@ public class DTW extends ElasticDistances {
     }
 
     public int getWindowSize(final int n, final double r) {
-        return (int) Math.ceil(r * n);
+//        return (int) Math.ceil(r * n);
+        return (int) (r * n);
     }
 
     public WarpingPathResults distanceExt(final double[] first, final double[] second, final int windowSize) {

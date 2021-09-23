@@ -37,8 +37,7 @@ public class LCSS extends ElasticDistances {
                     j = -1;
                 } else if (j >= n) {
                     j = i + delta;
-                } else if (second[j] + epsilon >= first[i] &&
-                        second[j] - epsilon <= first[i]) {
+                } else if (Math.abs(first[i]-second[j]) < epsilon) {
                     lcss[i + 1][j + 1] = lcss[i][j] + 1;
                 } else if (delta == 0) {
                     lcss[i + 1][j + 1] = lcss[i][j];
@@ -69,7 +68,7 @@ public class LCSS extends ElasticDistances {
                     j = -1;
                 } else if (j >= n) {
                     j = i + delta;
-                } else if (second[j] + epsilon >= first[i] && second[j] - epsilon <= first[i]) {
+                } else if (Math.abs(first[i]-second[j]) < epsilon) {
                     absIJ = Math.abs(i - j);
                     lcss[i + 1][j + 1] = lcss[i][j] + 1;
                     minDelta[i + 1][j + 1] = Math.max(absIJ, minDelta[i][j]);

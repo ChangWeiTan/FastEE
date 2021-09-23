@@ -15,6 +15,7 @@ import java.util.*;
 import java.util.concurrent.Callable;
 
 import static application.Application.extractArguments;
+import static classifiers.TimeSeriesClassifier.TrainOpts.*;
 import static utils.GenericTools.doTimeNs;
 import static utils.GenericTools.println;
 
@@ -22,18 +23,18 @@ public class TrainingTimeBenchmark {
     static String moduleName = "TrainingTimeBenchmark";
     private static final String[] testArgs = new String[]{
             "-machine=windows",
-            "-problem=small",
+            "-problem=ECGFiveDays",
             "-classifier=FastEE", // see classifiers in TimeSeriesClassifier.java
             "-paramId=-1",
             "-cpu=-1",
-            "-verbose=0",
+            "-verbose=1",
             "-iter=0",
             "-trainOpts=2",
     };
 
     public static void main(String[] args) throws Exception {
         final long startTime = System.nanoTime();
-//        args = testArgs;
+        args = testArgs;
         extractArguments(args);
 
         if (Application.problem.equals(""))
@@ -119,17 +120,26 @@ public class TrainingTimeBenchmark {
         if (Application.verbose > 1) println(classifier);
 
         if (Application.outputPath == null) {
+            String trainingOpts = "";
+            if (!classifier.classifierIdentifier.contains("ElasticEnsemble"))
+                if (Application.trainOpts == LOOCV || Application.trainOpts == LOOCV0) trainingOpts = "_LOOCV";
+                else if (Application.trainOpts == LOOCVLB || Application.trainOpts == LOOCV0LB)
+                    trainingOpts = "_LOOCVLb";
+                else trainingOpts = "_FastCV";
+
             if (Application.paramId > 0)
                 Application.outputPath = System.getProperty("user.dir") +
                         "/outputs/benchmark/" +
-                        classifier.classifierIdentifier + "_" +
+                        classifier.classifierIdentifier +
+                        trainingOpts + "_" +
                         Application.paramId + "/" +
                         Application.iteration + "/" +
                         problem + "/";
             else
                 Application.outputPath = System.getProperty("user.dir") +
                         "/outputs/benchmark/" +
-                        classifier.classifierIdentifier + "/" +
+                        classifier.classifierIdentifier +
+                        trainingOpts + "/" +
                         Application.iteration + "/" +
                         problem + "/";
         }
@@ -152,7 +162,7 @@ public class TrainingTimeBenchmark {
             classificationResults.problem = problem;
             if (Application.verbose == 0)
                 println("[" + moduleName + "]" + classificationResults);
-            else if (Application.verbose == 1)
+            else if (Application.verbose >= 1)
                 println("[" + moduleName + "] Problem: " + problem + ", Train Time: " + trainingResults.doTimeNs() +
                         ", Train Acc: " + trainingResults.accuracy + ", Test Acc: " + classificationResults.accuracy);
             totalTime += classificationResults.elapsedTimeNanoSeconds;

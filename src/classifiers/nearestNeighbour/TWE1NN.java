@@ -61,6 +61,7 @@ public class TWE1NN extends OneNearestNeighbour {
         if (useDerivative > 0)
             this.classifierIdentifier = "DTWE_1NN_R1";
         this.useDerivative = useDerivative;
+        init(paramId, trainOpts);
     }
 
     public void summary() {
