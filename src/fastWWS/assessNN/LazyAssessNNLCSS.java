@@ -77,11 +77,11 @@ public class LazyAssessNNLCSS extends LazyAssessNN {
             case None:
             case Previous_LB_LCSS:
             case Previous_LCSS:
-                if (bestMinDist >= scoreToBeat) return RefineReturnType.Pruned_with_LB;
+                if (bestMinDist > scoreToBeat) return RefineReturnType.Pruned_with_LB;
                 indexStoppedLB = 0;
                 minDist = 0;
             case Partial_LB_LCSS:
-//                if (bestMinDist >= scoreToBeat) return RefineReturnType.Pruned_with_LB;
+                if (bestMinDist > scoreToBeat) return RefineReturnType.Pruned_with_LB;
                 tryFullLBLCSS();
                 if (minDist > bestMinDist) bestMinDist = minDist;
                 if (bestMinDist > scoreToBeat) {

@@ -89,7 +89,7 @@ public class WDTW extends ElasticDistances {
 
         //warp rest
         for (int i = 1; i < m; i++) {
-            tooBig = true;
+            tooBig = !(matrixD[i][0] < cutOffValue);
             for (int j = 1; j < n; j++) {
                 //calculate classifiers.nearestNeighbour.distances
                 minDistance = Math.min(matrixD[i][j - 1], Math.min(matrixD[i - 1][j], matrixD[i - 1][j - 1]));

@@ -23,13 +23,14 @@ public class TrainingTimeBenchmark {
     static String moduleName = "TrainingTimeBenchmark";
     private static final String[] testArgs = new String[]{
             "-machine=windows",
-            "-problem=ECGFiveDays",
-            "-classifier=FastEE", // see classifiers in TimeSeriesClassifier.java
+            "-problem=GestureMidAirD3",
+            "-classifier=LCSS1NN", // see classifiers in TimeSeriesClassifier.java
             "-paramId=-1",
             "-cpu=-1",
-            "-verbose=1",
+            "-verbose=3",
             "-iter=0",
             "-trainOpts=2",
+            "-znorm=true"
     };
 
     public static void main(String[] args) throws Exception {
